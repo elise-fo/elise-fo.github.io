@@ -34,6 +34,7 @@
 
     h3 {
       font-family: 'Raleway', sans-serif;
+      text-transform: uppercase;
     }
 
     #main {
@@ -105,6 +106,42 @@
       opacity:0.5;
       color:white;
     }
+
+    .IAH:hover {
+      background-color: #6082B6;
+      opacity: 0.9;
+    }
+
+    .PAN:hover {
+      background-color: #0081A1;
+      opacity: 0.9;
+    }
+
+    .MBI:hover {
+      background-color: #5F9EA0;
+      opacity: 0.9;
+    }
+
+    .DA:hover {
+      background-color: #2AA1BD;
+      opacity: 0.9;
+    }
+
+    .NGO:hover {
+      background-color: #006077;
+      opacity: 0.9;
+    }
+
+    .LCB:hover {
+      background-color: #6CB2C2;
+      opacity: 0.9;
+    }
+
+    .PI:hover {
+      background-color: #003A48;
+      opacity: 0.9;
+    }
+
     label span:before {
       display: flex;
       flex-shrink: 0;
@@ -350,7 +387,7 @@
       display:inline-block;
       margin-bottom: 5px;
       min-height:15px;
-      opacity: 0.7;
+      opacity: 0.8;
     }
 
     .detailsContentcontainer {
@@ -367,7 +404,7 @@
       padding: 10px;
       border-radius: 0.25rem;
       background-color: #028db0;
-      opacity: 0.6;
+      opacity: 0.8;
     }
     </style>
 </head>
@@ -443,7 +480,7 @@
       <div id='filters-container'>
         <button class="collapsible">Filters</button>
         <div class="content" id="filters">
-          <button class="collapsible">Women Specific</button>
+          <button class="collapsible">Women Oriented</button>
           <div class="content" id="ws">
             <form>
               <label>
@@ -460,7 +497,7 @@
               </label>
             </form>
           </div>
-          <button class="collapsible">Social Entrepreneur specific</button>
+          <button class="collapsible">Social Entrepreneur Oriented</button>
           <div class="content" id="ses">
             <form>
               <label>
@@ -483,35 +520,35 @@
             <form>
               <label>
                 <input type="radio"  name="classification" value="All" onchange="changeRadio()" checked/>
-                <span>All</span>
+                <span class="All">All</span>
               </label>
               <label>
                 <input type="radio" name="classification" value="IAH" onchange="changeRadio()" />
-                <span>Incubators, Accelerators & Hubs</span>
+                <span class="IAH">Incubators, Accelerators & Hubs</span>
               </label>
               <label>
                 <input type="radio" name="classification" value="PAN" onchange="changeRadio()" />
-                <span>Professional Associations & Networks</span>
+                <span class="PAN">Professional Associations & Networks</span>
               </label>
               <label>
                 <input type="radio" name="classification" value="NGO" onchange="changeRadio()" />
-                <span>NGOs</span>
+                <span class="NGO">NGOs</span>
               </label>
               <label>
                 <input type="radio" name="classification" value="DA" onchange="changeRadio()" />
-                <span>Development Agency</span>
+                <span class="DA">Development Agency</span>
               </label>
               <label>
                 <input type="radio" name="classification" value="MBI" onchange="changeRadio()" />
-                <span>MFIs, Banks, Investors</span>
+                <span class="MBI">MFIs, Banks, Investors</span>
               </label>
               <label>
                 <input type="radio" name="classification" value="LCB" onchange="changeRadio()" />
-                <span>Local Consultants & Businesses</span>
+                <span class="LCB">Local Consultants & Businesses</span>
               </label>
               <label>
                 <input type="radio" name="classification" value="PI" onchange="changeRadio()" />
-                <span>Public Inititiaves</span>
+                <span class="PI">Public Inititiaves</span>
               </label>
             </form>
             </div>  
@@ -596,27 +633,85 @@
     map.addControl(new mapboxgl.NavigationControl(),'bottom-right');
 
     var innovators = {
-      'IAH':[],
-      'PAN':[],
-      'NGO':[],
-      'DA':[],
-      'PI':[],
-      'MBI':[],
-      'LCB':[]
-    };
+              'IAH':{
+                'name':'Incubators, Accelerators & Hubs',
+                'color':'#6082B6',
+                'data':[]
+                },
+              'PAN':{
+                'name':'Professional Associations & Networks',
+                'color':'#0081A1',
+                'data':[]
+                },
+              'NGO':{
+                'name':'NGOs',
+                'color':'#006077',
+                'data':[]
+                },
+              'DA':{
+                'name':'Development Agency',
+                'color':'#2AA1BD',
+                'data':[]
+                },
+              'PI':{
+                'name':'Public Initiatives',
+                'color':'#003A48',
+                'data':[]
+                },
+              'MBI':{
+                'name':'MFIs, Banks, Investors',
+                'color':'#5F9EA0',
+                'data':[]
+                },
+              'LCB':{
+                'name':'Local Consultants & Businesses',
+                'color':'#6CB2C2',
+                'data':[]
+                }
+            };
 
 
     async function fetchInnovators(stakeholder, womenspecific, socialspecific){
             document.body.classList.add("fetching-innovators");
 
+            colors = ['#6082B6', '#0081A1','#006077','#2AA1BD','#003A48','#5F9EA0','#6CB2C2','#6F8FAF']
+
             innovators = {
-              'IAH':[],
-              'PAN':[],
-              'NGO':[],
-              'DA':[],
-              'PI':[],
-              'MBI':[],
-              'LCB':[]
+              'IAH':{
+                'name':'Incubators, Accelerators & Hubs',
+                'color':'#6082B6',
+                'data':[]
+                },
+              'PAN':{
+                'name':'Professional Associations & Networks',
+                'color':'#0081A1',
+                'data':[]
+                },
+              'NGO':{
+                'name':'NGOs',
+                'color':'#006077',
+                'data':[]
+                },
+              'DA':{
+                'name':'Development Agency',
+                'color':'#2AA1BD',
+                'data':[]
+                },
+              'PI':{
+                'name':'Public Initiatives',
+                'color':'#003A48',
+                'data':[]
+                },
+              'MBI':{
+                'name':'MFIs, Banks, Investors',
+                'color':'#5F9EA0',
+                'data':[]
+                },
+              'LCB':{
+                'name':'Local Consultants & Businesses',
+                'color':'#6CB2C2',
+                'data':[]
+                }
             };
 
             const { data } = await innovatorsMap.getInnovators(stakeholder, womenspecific, socialspecific);
@@ -671,9 +766,9 @@
                     yearFounded: yearFounded
                   }}
 
-              innovators[classification].push(stakeholderItem)
+              innovators[classification]['data'].push(stakeholderItem)
             });
-
+          console.log(innovators)
 
           function classification_layer(name, stakeholder_item, color){
             // add markers to map
@@ -703,7 +798,7 @@
               closeOnClick: false
             });
   
-            map.on('mouseenter', name, (marker) => {              
+            map.on('mouseenter', name, (marker) => {   
               // Change the cursor style as a UI indicator.
               map.getCanvas().style.cursor = 'pointer';
               marker = marker.features[0]
@@ -711,7 +806,7 @@
               const coordinates = marker.geometry.coordinates.slice();
               const description = '<h3>' 
                       + marker.properties.title + '</h3><p>' 
-                      + marker.properties.type_stakeholder + "</p><p>"
+                      + "Type: "+ marker.properties.type_stakeholder + "</p><p>"
                       + "Established: "+ marker.properties.yearFounded + '</p>'
               
               // Populate the popup and set its coordinates
@@ -732,83 +827,87 @@
             map.on('click', name, (marker) => {              
               // Change the cursor style as a UI indicator.
 
-              marker = marker.features[0]
+              const marker_feature = marker.features[0]
+              const coordinates = marker_feature.geometry.coordinates.slice();
 
-              const coordinates = marker.geometry.coordinates.slice();
-
+              if (getDistance(marker.lngLat.lat, marker.lngLat.lng, coordinates[1], coordinates[0])<1){
               const descriptionclick = `<div class = "stakeholdersDetails">
                 <span class="close right" onclick="popUpCloseClick()">&times;</span>
-                <h3> ${marker.properties.title} </h3>
-                <div>
-                  <p> ${marker.properties.locationName} </p>
+                <h3> ${marker_feature.properties.title} </h3>
+                <div class = "description">
+                  <div class="details">
+                    <span class = "detailsTitle"> Information </span>
+                    <div style="text-align:left; padding:10px">
+                      ${marker_feature.properties.locationName}
+                      <br><br>
+                      Founded in <span> ${marker_feature.properties.yearFounded}</span>
+                    </div>
+                  </div>
+                ${datapreprocess(marker_feature.properties.type_stakeholder, 'Type of stakeholder')}
                 </div>
-                <div>
-                  <p>Founded in <span> ${marker.properties.yearFounded}</span></p>
-                </div>
-                <hr>
+                <hr color="#F9C100">
                 <div class = "description">
                   <div class = "details">
                     <span class = "detailsTitle"> Description </span>
-                    <p style = "text-align: left; margin:10px; opacity:0.8"> ${marker.properties.description} </p>
+                    <p style = "text-align: left; margin:10px; opacity:0.8"> ${marker_feature.properties.description} </p>
                   </div>
                   <div class = "details">
                     <span class = "detailsTitle"> Contact </span>
                     <div class="contact-container">
                       ${datapreprocess(
-                          marker.properties.website, 
+                          marker_feature.properties.website, 
                           'Website',
                           `<div class="contact">
-                            <a class="contact-link" href = "${marker.properties.website}"><i class="fas fa-globe" ></i></a>
+                            <a class="contact-link" href = "${marker_feature.properties.website}"><i class="fas fa-globe" ></i></a>
                           </div>`
                           )}
                       ${datapreprocess(
-                          marker.properties.email, 
+                          marker_feature.properties.email, 
                           'Email',
                           `<div class="contact">
                           <button id="emailButton" class="contact-button" onclick="modalButtonClick('emailModal')"><i class="fas fa-envelope"></i></button>
                           <div id="emailModal" class="modal">
                             <div class="modal-content">
                               <span class="close" onclick="modalCloseClick('emailModal')">&times;</span>
-                              <p>Contact: ${marker.properties.email}</p>
+                              <p>Contact: ${marker_feature.properties.email}</p>
                             </div>
                           </div>
                           </div>`
                           )}
                       ${datapreprocess(
-                          marker.properties.phone, 
+                          marker_feature.properties.phone, 
                           'Phone',
                           `<div class="contact">
                           <button id="phoneButton" class="contact-button" onclick="modalButtonClick('phoneModal')"><i class="fas fa-phone-square"></i></button>
                           <div id="phoneModal" class="modal">
                             <div class="modal-content">
                               <span class="close" onclick="modalCloseClick('phoneModal')">&times;</span>
-                              <p>Contact: ${marker.properties.phone}</p>
+                              <p>Contact: ${marker_feature.properties.phone}</p>
                             </div>
                           </div>
                           </div>`
                           )}
                       ${datapreprocess(
-                          marker.properties.facebook, 
+                          marker_feature.properties.facebook, 
                           'Website',
                           `<div class="contact">
-                            <a class="contact-link" href = "${marker.properties.facebook}"><i class="fab fa-facebook"></i></a>
+                            <a class="contact-link" href = "${marker_feature.properties.facebook}"><i class="fab fa-facebook"></i></a>
                           </div>`
                           )}
                       ${datapreprocess(
-                          marker.properties.instagram, 
+                          marker_feature.properties.instagram, 
                           'Website',
                           `<div class="contact">
-                            <a class="contact-link" href = "https://www.instagram.com/${marker.properties.instagram.replace('@','')}"><i class="fab fa-instagram"></i></a>
+                            <a class="contact-link" href = "https://www.instagram.com/${marker_feature.properties.instagram.replace('@','')}"><i class="fab fa-instagram"></i></a>
                           </div>`
                           )}
                       
                     </div>
                   </div>
-                  ${datapreprocess(marker.properties.type_stakeholder, 'Type of stakeholder')}
-                  ${datapreprocess(marker.properties.sectors, 'Sectors covered')}
-                  ${datapreprocess(marker.properties.supportType, 'Support type')}
-                  ${datapreprocess(marker.properties.innovationStages, 'Innovation stage covered')}
-                  ${datapreprocess(marker.properties.fundingType, 'Funding Type')}
+                  ${datapreprocess(marker_feature.properties.sectors, 'Sectors covered')}
+                  ${datapreprocess(marker_feature.properties.supportType, 'Support type')}
+                  ${datapreprocess(marker_feature.properties.innovationStages, 'Innovation stage covered')}
+                  ${datapreprocess(marker_feature.properties.fundingType, 'Funding Type')}
               </div>
               </div>`
 
@@ -828,7 +927,7 @@
               map.resize();
 
               map.flyTo({
-                center: marker.geometry.coordinates,
+                center: marker_feature.geometry.coordinates,
 
                 zoom: 9,
                 bearing: 0,
@@ -836,7 +935,7 @@
                 // These options control the flight curve, making it move
                 // slowly and zoom out almost completely before starting
                 // to pan.
-                speed: 0.5, // make the flying slow
+                speed: 1.5, // make the flying slow
                 curve: 1, // change the speed at which it zooms out
         
                 // This can be any easing function: it takes a number between
@@ -846,7 +945,7 @@
                 // this animation is considered essential with respect to prefers-reduced-motion
                 essential: true
                 });
-            });
+            }});
           };
 
             // make a marker for each feature and add to the map
@@ -855,7 +954,7 @@
         colors = ['#6082B6', '#0081A1','#006077','#2AA1BD','#003A48','#5F9EA0','#6CB2C2','#6F8FAF']
         for (i = 0; i < layers_keys.length; i++) {
           var name = `innovators_${layers_keys[i]}`
-          classification_layer(name, innovators[layers_keys[i]], colors[i])
+          classification_layer(name, innovators[layers_keys[i]]['data'], innovators[layers_keys[i]]['color'])
         };
 
         const container = document.getElementById('myPopup');
@@ -905,6 +1004,12 @@
         }
           };
           
+          function getDistance(xA, yA, xB, yB) { 
+            var xDiff = xA - xB; 
+            var yDiff = yA - yB; 
+
+            return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+          }
 
       function modalButtonClick(element){
         console.log('opening')
@@ -939,7 +1044,7 @@
               // These options control the flight curve, making it move
               // slowly and zoom out almost completely before starting
               // to pan.
-              speed: 0.5, // make the flying slow
+              speed: 1.5, // make the flying slow
               curve: 1, // change the speed at which it zooms out
       
               // This can be any easing function: it takes a number between
