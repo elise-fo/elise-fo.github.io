@@ -345,6 +345,18 @@
       margin:15px;
     }
 
+    .title {
+      display:flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .logo {
+      height: 50px;
+      width: 50px;
+      margin:0 20px;
+    }
+
     .content {
       padding: 0 0px;
       max-height: 0;
@@ -554,6 +566,37 @@
             </div>  
           </div>
         </div>
+
+        <!-- <div id="legend container">
+          <div>
+            <span class="dot"></span>
+            <span class="IAH">Incubators, Accelerators & Hubs</span>
+          </div>
+          <div>
+            <span class="dot"></span>
+            <span class="PAN">Professional Associations & Networks</span>
+          </div>
+          <div>
+            <span class="dot"></span>
+            <span class="NGO">NGOs</span>
+          </div>
+          <div>
+            <span class="dot"></span>
+            <span class="DA">Development Agency</span>
+          </div>
+          <div>
+            <span class="dot"></span>
+            <span class="MBI">MFIs, Banks, Investors</span>
+          </div>          
+          <div>
+            <span class="dot"></span>
+            <span class="LCB">Local Consultants & Businesses</span>
+          </div>
+          <div>
+            <span class="dot"></span>
+            <span class="PI">Public Inititiaves</span>
+          </div>
+        </div> -->
       </div>
 
       <script>
@@ -833,7 +876,10 @@
               if (getDistance(marker.lngLat.lat, marker.lngLat.lng, coordinates[1], coordinates[0])<1){
               const descriptionclick = `<div class = "stakeholdersDetails">
                 <span class="close right" onclick="popUpCloseClick()">&times;</span>
-                <h3> ${marker_feature.properties.title} </h3>
+                <div class="title">
+                  <img class ="logo" src="https://seeklogo.com/images/G/google-logo-28FA7991AF-seeklogo.com.png" alt="logo">
+                  <h3> ${marker_feature.properties.title} </h3>
+                </div>
                 <div class = "description">
                   <div class="details">
                     <span class = "detailsTitle"> Information </span>
